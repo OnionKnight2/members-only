@@ -5,6 +5,7 @@
   <%= @user.email %>  
 
   <%= button_to "logout", destroy_user_session_path, method: :delete  %>  
+  <%= button_to "edit", edit_user_registration_path, method: :get  %>  
 
 <% else %>
   <%= button_to "login", new_user_session_path, method: :get  %>  
