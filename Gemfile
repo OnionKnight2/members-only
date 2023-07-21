@@ -74,3 +74,4 @@ end
 gem "devise", "~> 4.9"
 
 gem "responders"
+gem "tailwindcss-rails", "~> 2.0"

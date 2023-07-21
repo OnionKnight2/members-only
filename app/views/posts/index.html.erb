@@ -1,31 +1,39 @@
 <p style="color: green"><%= notice %></p>
 
-<% if @user %>
-  <strong>Welcome</strong>
-  <%= @user.email %>  
+<div class="navbar bg-secondary mb-2">
+  <% if @user %>
+    <div>
+      <strong>WELCOME</strong>
+      <%= @user.name %>  
+    </div>
+    
+    <%= button_to "edit profile", edit_user_registration_path, method: :get, class: "navbar-toggler border-0 text-white" %>  
+    <%= button_to "logout", destroy_user_session_path, method: :delete, class: "navbar-toggler border-0 text-white" %>  
 
-  <%= button_to "logout", destroy_user_session_path, method: :delete  %>  
-  <%= button_to "edit", edit_user_registration_path, method: :get  %>  
+  <% else %>
 
-<% else %>
-  <%= button_to "login", new_user_session_path, method: :get  %>  
-  <%= button_to "signup", new_user_registration_path, method: :get  %>    
-<% end %>
-
-
-
-<h1>Posts</h1>
-
-<div id="posts">
-  <% @posts.each do |post| %>
-    <% if @user %>
-      <p>
-        <strong>User:</strong>
-        <%= post.user.name %>
-     </p>
-    <% end %>
-    <%= render post %>
+    <%= button_to "login", new_user_session_path, method: :get, class: "navbar-toggler border-0 text-white"  %>  
+    <%= button_to "signup", new_user_registration_path, method: :get, class: "navbar-toggler border-0 text-white" %>   
+  
   <% end %>
 </div>
 
-<%= link_to "New post", new_post_path %>
+
+<h1 class="mb-4">Posts</h1>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+    <div>
+      <% if @user %>
+        <p>
+          <%= post.user.name %>
+        </p>
+      <% end %>
+      <div class="border rounded p-2 mb-2 flex">
+        <%= render post %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "New post", new_post_path, class: "btn btn-light btn-sm mt-2" %>
